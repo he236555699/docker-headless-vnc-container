@@ -11,6 +11,11 @@ LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firef
       io.openshift.tags="vnc, ubuntu, xfce" \
       io.openshift.non-scalable=true
 
+## update sources
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak
+RUN sed -i s:/archive.ubuntu.com:/mirrors.aliyun.com/ubuntu:g /etc/apt/sources.list
+RUN cat /etc/apt/sources.list
+
 ## Connection ports for controlling the UI:
 # VNC port:5901
 # noVNC webport, connect via http://IP:6901/?password=vncpassword
